@@ -1,0 +1,27 @@
+Model:
+  version: '2023/9/2'
+  srid_org: 4326     #wgs84
+  srid_calc: 6677    #平面直角座標9系
+  buff_meter: 100    #表示範囲のバッファ（メートル）
+  delta_mesh: 10     #表示範囲の補間解像度（メートル）
+  sigma_amp: 5000
+  lambda: 0.075
+  output: True #Trueで出力
+  check_surface: True    #Trueで表示
+  check_dir : f       #Trueで表示
+  check_predict: True #Trueで表示
+  check_dmdmode: True #Trueで表示
+  show_dmdmode: True #Trueで表示
+
+  past_days: 20 # 読み込み対象とする過去データの日数
+  pred_days: 14 # 出力対象とする予測データの日数
+  steps: 1000   # 計算時のタイムステップ数
+  
+Model2:
+  C_cofficient: 0.5
+  D_cofficient: 0.1
+  parallel_threads: 4 
+
+  
+
+
