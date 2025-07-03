@@ -7,11 +7,11 @@ Model:
   sigma_amp: 5000
   lambda: 0.075
   output: True #Trueで出力
-  check_surface: True    #Trueで表示
+  check_surface: nTrue    #Trueで表示
   check_dir : f       #Trueで表示
-  check_predict: True #Trueで表示
-  check_dmdmode: True #Trueで表示
-  show_dmdmode: True #Trueで表示
+  check_predict: nTrue #Trueで表示
+  check_dmdmode: nTrue #Trueで表示
+  show_dmdmode: nTrue #Trueで表示
 
   past_days: 20 # 読み込み対象とする過去データの日数
   pred_days: 14 # 出力対象とする予測データの日数

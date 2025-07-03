@@ -85,10 +85,17 @@ class create_geojson():
         
     # geojsonで出力する
     def output_geojson( self , geo_df , sub_dir, filename ):
-        f = os.path.join( 
+        
+        # 出力フォルダの作成
+        output_dir = os.path.join( 
             "../" , 
             "output" , 
-            sub_dir , 
+            "sub_dir"                                  
+        )
+        os.makedirs( output_dir , exist_ok=True  )
+        
+        f = os.path.join( 
+            output_dir , 
             filename + '.geojson'                 
         )
         geo_df.to_file( f , driver="GeoJSON", encoding='utf-8')                    

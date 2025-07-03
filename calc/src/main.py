@@ -74,17 +74,19 @@ if __name__ == '__main__':
     present_step = int( past_day / ( pred_day + past_day ) * steps )
     z_data = z_pred[ present_step ]
     
-    print( z_pred[50] ) 
-    ViewPredict.view_predict( z_pred , 0 , 4 , 100 , 1000 )
+    
+    if config['Model']['check_predict'] == True:
+        ViewPredict.view_predict( z_pred , 0 , 4 , 100 , 1000 )
     #input() 
     
         
     if config['Model']['output'] == True:
         Z_Geojson = CreateGeojson.create_geojson( 
-                                        CalcExist.grid_x , 
-                                        CalcExist.grid_y , 
-                                        z_data , 
-                                        CalcExist.crs   )
+            CalcExist.grid_x , 
+            CalcExist.grid_y , 
+            z_data , 
+            CalcExist.crs   
+        )
         
         Z_Geojson.set_surface4map( )
         Z_Geojson.transfer_crs( config['Model']['srid_org'] )

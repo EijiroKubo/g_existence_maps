@@ -53,10 +53,17 @@ class create_geojson():
 
     # geotiffを出力する
     def output_geotiff(self, data , sub_dir, filename ):
-        f = os.path.join( 
+        
+        # 出力フォルダの作成
+        output_dir = os.path.join( 
             "../" , 
             "output" , 
-            sub_dir , 
+            "sub_dir"                                  
+        )
+        os.makedirs( output_dir , exist_ok=True  )
+                        
+        f = os.path.join( 
+            output_dir , 
             filename + '.geotiff'                 
         )
 
