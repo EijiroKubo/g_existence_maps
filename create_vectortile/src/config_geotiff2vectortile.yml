@@ -1,0 +1,3 @@
+epsg_out: 'epsg:4326'      # 出力後の座標系(WGS84)
+multiprocessing_auto: True # 未実装：True の場合、並走させるプロセス数に実行環境のコア数を自動で設定、コア数が取得できない場合は、parallel_processes_numの値を使用する
+parallel_processes_num: 4  # 未実装：multiprocessing_auto is not True の時の画像作成を並走させるプロセス数を手動で設定、また、コア数が取得できない場合も当該値を並走数として使用する

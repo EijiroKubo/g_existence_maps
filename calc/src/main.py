@@ -11,6 +11,7 @@ import subprocess
 import SetFile as SetFile
 import ExecKriging as ExecKriging 
 import CreateGeojson as CreateGeojson
+import CreateGeotiff as CreateGeotiff
 import CalcExistence as CalcExistence
 import CalcDmd as CalcDmd
 import CalcDirection as CalcDirection
@@ -80,7 +81,7 @@ if __name__ == '__main__':
     #input() 
     
         
-    if config['Model']['output'] == True:
+    if config['Model']['output_geojson'] == True:
         Z_Geojson = CreateGeojson.create_geojson( 
             CalcExist.grid_x , 
             CalcExist.grid_y , 
@@ -92,6 +93,21 @@ if __name__ == '__main__':
         Z_Geojson.transfer_crs( config['Model']['srid_org'] )
         Z_Geojson.output_geojson( 
             Z_Geojson.cell_transfered , 
+            'prob' , 
+            'result_ex'
+        )
+
+    if config['Model']['output_geotiff'] == True:
+        Z_Geotiff = CreateGeotiff.create_geotiff( 
+            CalcExist.grid_x , 
+            CalcExist.grid_y , 
+            z_data , 
+            CalcExist.crs   
+        )
+        
+        Z_Geotiff.mesh_coordinates()
+        Z_Geotiff.output_geotiff( 
+            z_data , 
             'prob' , 
             'result_ex'
         )
@@ -112,8 +128,8 @@ if __name__ == '__main__':
             df = pd.DataFrame( np.real( dmd_mode[i] ) ) 
             df.to_csv( fi , sep = "," )
             
-        #pred
-        ViewPredict.view_predict( np.real(dmd_pred ) , 0 , 1 , 300 , 1000 )
+        # pred
+        # ViewPredict.view_predict( np.real(dmd_pred ) , 0 , 1 , 300 , 1000 )
     
     
     '''

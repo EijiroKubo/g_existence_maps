@@ -8,7 +8,7 @@ from rasterio.transform import from_origin
 
 
 
-class create_geojson():
+class create_geotiff():
 
     def __init__(self , grid_x , grid_y , z , crs ):
         #出力するメッシュデータ
@@ -19,9 +19,9 @@ class create_geojson():
 
 
     #メッシュの座標を記録
-    def mesh_coordinates(self ,mesh_x , mesh_y ):
-        self.mesh_x = mesh_x
-        self.mesh_y = mesh_y
+    def mesh_coordinates(self ): #), mesh_x , mesh_y ):
+        self.mesh_x = self.grid_x
+        self.mesh_y = self.grid_y
 
         self.x_min = np.min(self.mesh_x)
         self.x_max = np.max(self.mesh_x)
@@ -39,18 +39,14 @@ class create_geojson():
             self.x_min, self.y_max, self.cellsize_x, self.cellsize_y
         )
         
+    # 地図に投影用のデータを作成する    
+    def set_surface4map( self ):
         
-    # 指定のステップに対してgeotiffデータを出力する
-    def output_geotiff(self, h_time_series, time_steps):
-        t_max = np.shape( h_time_series )[0]
+        mesh_x_tmp = self.grid_x[0]
+        mesh_y_tmp = self.grid_y[:,0]
+        self.mesh_coordinates( mesh_x_tmp , mesh_y_tmp )        
         
-        for id, t in enumerate(time_steps):  #
-            if t > t_max : #追記 24/9/8
-                print("couldn't output file. maxstep=" , t_max , "/outputstep=" , t )
-                
-            else :             
-                self.output_file(h_time_series[t], id)
-
+        
     # geotiffを出力する
     def output_geotiff(self, data , sub_dir, filename ):
         
@@ -58,7 +54,7 @@ class create_geojson():
         output_dir = os.path.join( 
             "../" , 
             "output" , 
-            "sub_dir"                                  
+            sub_dir
         )
         os.makedirs( output_dir , exist_ok=True  )
                         

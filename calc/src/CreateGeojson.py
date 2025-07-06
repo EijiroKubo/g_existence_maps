@@ -90,7 +90,7 @@ class create_geojson():
         output_dir = os.path.join( 
             "../" , 
             "output" , 
-            "sub_dir"                                  
+            sub_dir
         )
         os.makedirs( output_dir , exist_ok=True  )
         
